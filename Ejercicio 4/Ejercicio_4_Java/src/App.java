@@ -11,58 +11,29 @@
  */
 
 public class App {
+    final static int TRIANGULO = 0;
+    final static int CUADRADO = 1;
+    final static int RECTANGULO = 2;
+
     public static void main(String[] args) {
-
-        area(Triangle(10.0, 5.0));
-        area(Rectangle(5.0, 7.0));
-        area(Square(4.0));
+        System.out.println(area(TRIANGULO, 5, 3));
+        System.out.println(area(CUADRADO, 4, 0));
+        System.out.println(area(RECTANGULO, 4, 2));
     }
 
-    public interface Polygon {
+    public static double area(int polygon, double base, double height) {
+        switch (polygon) {
+            case TRIANGULO:
+                return base * height / 2;
 
-        public double area();
+            case CUADRADO:
+                return base * base;
 
-        public void printArea();
-    }
+            case RECTANGULO:
+                return base * height;
 
-    class Triangle implements Polygon {
-
-        public double area(double base, double height) {
-            return (base * height) / 2;
+            default:
+                return 0;
         }
-
-        public void printArea() {
-            System.out.println("El área del triángulo es ${area()}");
-
-        }
-
-        @Override
-        public double area() {
-            // TODO Auto-generated method stub
-            return 0;
-        }
-    }
-
-    class Rectangle implements Polygon {
-
-        public double area(double lenght, double width) {
-            return lenght * width;
-        }
-
-        public void printArea() {
-            System.out.println("El área del rectangulo es ${area()}");
-
-        }
-
-        @Override
-        public double area() {
-            // TODO Auto-generated method stub
-            return 0;
-        }
-    }
-
-    public double area(Polygon polygon) {
-        polygon.printArea();
-        return polygon.area();
     }
 }
